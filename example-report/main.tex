@@ -1,0 +1,333 @@
+
+\documentclass[12pt,a4paper]{article}
+
+% --------------------------------------------------
+% Packages
+% --------------------------------------------------
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{fontspec}
+\usepackage{xepersian}
+
+% --------------------------------------------------
+% Page layout
+% --------------------------------------------------
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+\onehalfspacing
+\setlength{\parskip}{6pt}
+\pagestyle{plain}
+
+% --------------------------------------------------
+% Cross-platform fonts
+% --------------------------------------------------
+\IfFontExistsTF{Amiri}{
+    \settextfont{Amiri}
+}{
+    \IfFontExistsTF{Tahoma}{
+        \settextfont{Tahoma}
+    }{
+        \settextfont{DejaVu Sans}
+    }
+}
+
+\IfFontExistsTF{Latin Modern Roman}{
+    \setlatintextfont{Latin Modern Roman}
+}{
+    \setlatintextfont{Times New Roman}
+}
+
+% --------------------------------------------------
+% Code formatting
+% --------------------------------------------------
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    showstringspaces=false
+}
+
+% --------------------------------------------------
+% Report information
+% Edit these fields for your own report
+% --------------------------------------------------
+\newcommand{\universityname}{دانشگاه نمونه}
+\newcommand{\coursename}{آزمایشگاه سیستم‌عامل}
+\newcommand{\reporttitle}{آشنایی با محیط لینوکس}
+\newcommand{\experimentnumber}{آزمایش اول}
+\newcommand{\studentname}{نام و نام خانوادگی}
+\newcommand{\studentid}{۱۴۰۳۰۰۰۰۰۰۰}
+\newcommand{\professorname}{نام استاد}
+\newcommand{\submissiondate}{۱۴۰۵/۰۷/۲۷}
+\newcommand{\academicyear}{۱۴۰۵--۱۴۰۶}
+
+\begin{document}
+
+% --------------------------------------------------
+% Title page
+% --------------------------------------------------
+\begin{titlepage}
+\begin{center}
+
+\vspace*{1cm}
+
+{\Large \universityname}
+
+\vspace{1.2cm}
+
+{\Huge\bfseries \coursename}
+
+\vspace{0.8cm}
+
+{\LARGE \experimentnumber}
+
+\vspace{0.4cm}
+
+{\Large \reporttitle}
+
+\vspace{2cm}
+
+{\large نام دانشجو: \studentname}
+
+\vspace{0.5cm}
+
+{\large شماره دانشجویی: \studentid}
+
+\vspace{0.5cm}
+
+{\large استاد درس: \professorname}
+
+\vspace{0.5cm}
+
+{\large تاریخ تحویل: \submissiondate}
+
+\vfill
+
+{\large سال تحصیلی \academicyear}
+
+\end{center}
+\end{titlepage}
+
+% --------------------------------------------------
+% Table of contents
+% --------------------------------------------------
+\tableofcontents
+\clearpage
+
+% --------------------------------------------------
+% Introduction
+% --------------------------------------------------
+\section{مقدمه}
+
+سیستم‌عامل یکی از اجزای اصلی هر سیستم رایانه‌ای است
+که وظیفه مدیریت منابع سخت‌افزاری و فراهم کردن
+محیط مناسب برای اجرای برنامه‌ها را بر عهده دارد.
+
+در این آزمایش با محیط سیستم‌عامل
+\lr{Ubuntu}
+و تعدادی از دستورات پایه ترمینال آشنا می‌شویم.
+
+% --------------------------------------------------
+% Objectives
+% --------------------------------------------------
+\section{هدف آزمایش}
+
+اهداف این آزمایش عبارت‌اند از:
+
+\begin{enumerate}
+    \item آشنایی با محیط سیستم‌عامل لینوکس
+    \item یادگیری نحوه استفاده از ترمینال
+    \item اجرای دستورات پایه
+    \item ثبت و تحلیل نتایج آزمایش
+    \item مستندسازی مراحل با استفاده از لاتک
+\end{enumerate}
+
+% --------------------------------------------------
+% Tools
+% --------------------------------------------------
+\section{ابزارهای موردنیاز}
+
+\begin{itemize}
+    \item سیستم‌عامل \lr{Ubuntu}
+    \item نرم‌افزار ترمینال
+    \item ویرایشگر \lr{TeXstudio}
+    \item موتور پردازش \lr{XeLaTeX}
+\end{itemize}
+
+% --------------------------------------------------
+% Experiment steps
+% --------------------------------------------------
+\section{مراحل انجام آزمایش}
+
+\subsection{بررسی مسیر فعلی}
+
+ابتدا ترمینال را باز می‌کنیم و دستور زیر را اجرا می‌کنیم:
+
+\begin{latin}
+\begin{lstlisting}
+pwd
+\end{lstlisting}
+\end{latin}
+
+این دستور مسیر پوشه فعلی را نمایش می‌دهد.
+
+\subsection{نمایش فایل‌ها و پوشه‌ها}
+
+برای مشاهده محتوای پوشه فعلی از دستور زیر
+استفاده می‌کنیم:
+
+\begin{latin}
+\begin{lstlisting}
+ls -la
+\end{lstlisting}
+\end{latin}
+
+گزینه‌های \lr{-l} و \lr{-a} به‌ترتیب اطلاعات
+بیشتر و فایل‌های مخفی را نمایش می‌دهند.
+
+\subsection{بررسی نام کاربر}
+
+دستور زیر نام کاربر فعال را نمایش می‌دهد:
+
+\begin{latin}
+\begin{lstlisting}
+whoami
+\end{lstlisting}
+\end{latin}
+
+\subsection{بررسی اطلاعات هسته}
+
+برای نمایش اطلاعات هسته و سیستم از دستور زیر
+استفاده می‌کنیم:
+
+\begin{latin}
+\begin{lstlisting}
+uname -a
+\end{lstlisting}
+\end{latin}
+
+\subsection{بررسی نسخه اوبونتو}
+
+برای مشاهده اطلاعات نسخه توزیع می‌توانیم
+از دستور زیر استفاده کنیم:
+
+\begin{latin}
+\begin{lstlisting}
+lsb_release -a
+\end{lstlisting}
+\end{latin}
+
+% --------------------------------------------------
+% Results table
+% --------------------------------------------------
+\section{نتایج و مشاهدات}
+
+جدول \ref{tab:commands}
+کاربرد دستورات استفاده‌شده در آزمایش را نشان می‌دهد.
+
+\begin{table}[htbp]
+\centering
+\caption{دستورات پایه ترمینال}
+\label{tab:commands}
+
+\begin{tabular}{cc}
+\toprule
+دستور & کاربرد \\
+\midrule
+\lr{pwd} & نمایش مسیر فعلی \\
+\lr{ls -la} & نمایش جزئیات فایل‌ها \\
+\lr{whoami} & نمایش نام کاربر \\
+\lr{uname -a} & نمایش اطلاعات هسته \\
+\lr{lsb\_release -a} & نمایش نسخه توزیع \\
+\bottomrule
+\end{tabular}
+
+\end{table}
+
+% --------------------------------------------------
+% Formula example
+% --------------------------------------------------
+\section{نمونه فرمول ریاضی}
+
+برای آشنایی با قابلیت فرمول‌نویسی لاتک،
+میانگین سه مقدار نمونه را محاسبه می‌کنیم.
+
+\begin{equation}
+\bar{x} = \frac{x_1+x_2+x_3}{3}
+\label{eq:average}
+\end{equation}
+
+اگر سه مقدار برابر با ۴، ۶ و ۸ باشند:
+
+\[
+\bar{x} = \frac{4+6+8}{3} = 6
+\]
+
+رابطه \eqref{eq:average}
+فرمول میانگین حسابی را نشان می‌دهد.
+
+% --------------------------------------------------
+% Image instructions
+% --------------------------------------------------
+\section{اضافه کردن تصویر}
+
+برای افزودن تصویر واقعی از مراحل آزمایش،
+ابتدا پوشه‌ای با نام
+\lr{images}
+در کنار فایل اصلی ایجاد کنید.
+
+سپس تصویر موردنظر را داخل آن قرار دهید.
+
+برای مثال، پس از ذخیره تصویری با نام
+\lr{terminal.png}
+می‌توانید کد زیر را به سند اضافه کنید.
+
+% Remove the comment markers after adding the image:
+%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[
+%         width=0.85\textwidth
+%     ]{images/terminal.png}
+%     \caption{خروجی ترمینال}
+%     \label{fig:terminal}
+% \end{figure}
+
+% --------------------------------------------------
+% Troubleshooting
+% --------------------------------------------------
+\section{مشکلات و راه‌حل‌ها}
+
+در صورت بروز مشکل هنگام اجرای دستورات،
+ابتدا متن خطا بررسی می‌شود.
+
+در صورت بروز مشکل در تولید PDF نیز
+تنظیمات کامپایلر، بسته‌های نصب‌شده،
+فونت‌ها و مسیر فایل‌ها باید بررسی شوند.
+
+% --------------------------------------------------
+% Conclusion
+% --------------------------------------------------
+\section{نتیجه‌گیری}
+
+در این آزمایش با محیط ترمینال لینوکس
+و تعدادی از دستورات پایه آن آشنا شدیم.
+
+همچنین یاد گرفتیم چگونه یک گزارش دانشگاهی
+را با استفاده از لاتک تهیه کنیم و
+بخش‌های مختلف آن را به‌صورت منظم نمایش دهیم.
+
+\end{document}
